@@ -11,3 +11,6 @@ To start the server, run the following command in the node_backend folder :
 ```node .\server.js``` 
 
 and open with live server the index.html file in the frontend folder to see the result.
+
+Backend : express js 
+Frontend : html/css/js.
