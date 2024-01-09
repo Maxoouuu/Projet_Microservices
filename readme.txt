@@ -14,3 +14,37 @@ and open with live server the index.html file in the frontend folder to see the 
 
 Backend : express js 
 Frontend : html/css/js.
+
+
+# Frontend Container:
+
+Label: frontend-1
+Image: nginx
+Port: 9091:80
+Volume Mapping (indicated with a dashed line): Maps the web_frontend directory from the host to /usr/share/nginx/html in the container.
+Includes index.html which makes a request to the backend.
+
+# Backend Container:
+
+Label: backend-1
+Image: node
+Port: 8081:8081
+Volume Mapping: Maps the node_backend directory from the host to /usr/share in the container.
+Includes server.js which serves the root and /colors endpoints.
+
+# Docker Compose Service:
+
+Encapsulates both the frontend and backend containers.
+Indicates the build context for each service as defined in docker-compose.yaml.
+
+# Network Interaction:
+
+A directed line or arrow from the frontend-1 container to the backend-1 container indicating the request flow to the /colors endpoint.
+
+# Project Files:
+
+Indicate the location of Dockerfile and other configuration files like .gitignore, package.json, and docker-compose.yaml.
+
+# External Interaction:
+
+An arrow from the user's browser pointing to the frontend-1 container's port 9091, representing how a user would interact with the application.
