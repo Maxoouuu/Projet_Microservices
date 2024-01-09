@@ -63,3 +63,7 @@ A request is made from the frontend service to the backend service for the `/col
 Users interact with the frontend via their web browsers by accessing `http://localhost:9091`, which serves the `index.html` file making requests to the backend service.
 
 ---
+
+## Diagram
+
+![image7](https://github.com/Maxoouuu/Projet_Microservices/blob/master/diagram.png)
