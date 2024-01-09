@@ -63,5 +63,3 @@ A request is made from the frontend service to the backend service for the `/col
 Users interact with the frontend via their web browsers by accessing `http://localhost:9091`, which serves the `index.html` file making requests to the backend service.
 
 ---
-
-**Note**: This `README.md` is intended to provide a description for the creation of a vector diagram representing the architecture and should be adapted into visual format using appropriate diagramming software.
