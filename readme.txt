@@ -16,35 +16,52 @@ Backend : express js
 Frontend : html/css/js.
 
 
-# Frontend Container:
+# Microservices Project Architecture
 
-Label: frontend-1
-Image: nginx
-Port: 9091:80
-Volume Mapping (indicated with a dashed line): Maps the web_frontend directory from the host to /usr/share/nginx/html in the container.
-Includes index.html which makes a request to the backend.
+This document provides an overview of the microservices architecture for the project.
 
-# Backend Container:
+## Services
 
-Label: backend-1
-Image: node
-Port: 8081:8081
-Volume Mapping: Maps the node_backend directory from the host to /usr/share in the container.
-Includes server.js which serves the root and /colors endpoints.
+The project is composed of two main services: the frontend and the backend.
 
-# Docker Compose Service:
+### Frontend Service
 
-Encapsulates both the frontend and backend containers.
-Indicates the build context for each service as defined in docker-compose.yaml.
+- **Container Name**: `frontend-1`
+- **Base Image**: `nginx`
+- **Port Mapping**: Host `9091` to Container `80`
+- **Volume Mapping**: Host's `web_frontend` directory to Container's `/usr/share/nginx/html`
+- **Main File**: `index.html` (makes a request to the backend on `http://127.0.0.1:8081/colors`)
 
-# Network Interaction:
+### Backend Service
 
-A directed line or arrow from the frontend-1 container to the backend-1 container indicating the request flow to the /colors endpoint.
+- **Container Name**: `backend-1`
+- **Base Image**: `node`
+- **Port Mapping**: Host `8081` to Container `8081`
+- **Volume Mapping**: Host's `node_backend` directory to Container's `/usr/share`
+- **Main File**: `server.js` (serves root and `/colors` endpoints)
 
-# Project Files:
+## Docker Compose
 
-Indicate the location of Dockerfile and other configuration files like .gitignore, package.json, and docker-compose.yaml.
+Orchestrates the services as defined in the `docker-compose.yaml` at the root of the project.
 
-# External Interaction:
+### Network Interaction
 
-An arrow from the user's browser pointing to the frontend-1 container's port 9091, representing how a user would interact with the application.
+A request is made from the frontend service to the backend service for the `/colors` endpoint. The frontend is accessible to the user's browser through port `9091`.
+
+## Project File Structure
+
+- `docker-compose.yaml`: Contains the configuration to build and run both `frontend` and `backend` services.
+- `web_frontend`:
+  - `Dockerfile`: Instructions to build the frontend service container.
+  - `index.html`: The HTML file served by the nginx container.
+- `node_backend`:
+  - `Dockerfile`: Instructions to build the backend service container.
+  - `server.js`: The Node.js express server application.
+
+## User Interaction
+
+Users interact with the frontend via their web browsers by accessing `http://localhost:9091`, which serves the `index.html` file making requests to the backend service.
+
+---
+
+**Note**: This `README.md` is intended to provide a description for the creation of a vector diagram representing the architecture and should be adapted into visual format using appropriate diagramming software.
