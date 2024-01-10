@@ -1,9 +1,23 @@
+version: '3.8'
 services:
   backend:
     build: node_backend/.
     ports:
-    - "8081:8081"
+      - "8081:8081"
   frontend:
     build: web_frontend/.
     ports:
-    - "9091:80"
+      - "9091:80"
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.9.3
+    environment:
+      - discovery.type=single-node
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+
+volumes:
+  esdata:
+    driver: local
