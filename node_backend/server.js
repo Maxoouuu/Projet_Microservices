@@ -1,6 +1,10 @@
 const express = require('express');
-const app = express();
+const bodyParser = require('body-parser');
 const { Client } = require('@elastic/elasticsearch');
+const app = express();
+
+// Parse JSON bodies (as sent by API clients)
+app.use(bodyParser.json());
 
 // Création d'un client Elasticsearch et connexion au service Elasticsearch
 const client = new Client({ node: 'http://elasticsearch:9200' });
@@ -21,7 +25,7 @@ app.get('/colors', (req, res, next) => {
 app.post('/index/color', async (req, res, next) => {
     // Exemple de body requis : { "color": "blue" }
     try {
-        const color = req.body.color; // Assurez-vous que le body-parser est configuré pour analyser le JSON
+        const color = req.body.color; // Utilisation de body-parser pour analyser le JSON
         const response = await client.index({
             index: 'colors',
             body: {
@@ -53,7 +57,7 @@ app.get('/search', async (req, res, next) => {
 });
 
 // Démarrage du serveur
-let port = 8081;
+const port = 8081;
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
 });
