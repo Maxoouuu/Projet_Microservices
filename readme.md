@@ -16,7 +16,6 @@ and open with live server the index.html file in the frontend folder to see the 
 Backend : express js 
 Frontend : html/css/js.
 
-
 # Microservices Project Architecture
 
 This document provides an overview of the microservices architecture for the project.
